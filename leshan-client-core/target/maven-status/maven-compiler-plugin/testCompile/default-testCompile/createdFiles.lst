@@ -1,0 +1,14 @@
+org\eclipse\leshan\client\send\ManualDataSenderTest.class
+org\eclipse\leshan\client\util\BaseInstanceEnablerFactoryTest.class
+org\eclipse\leshan\client\send\ManualDataSenderTest$FakeDataSenderManager.class
+org\eclipse\leshan\client\util\LinkFormatHelperTest$1.class
+org\eclipse\leshan\client\util\BaseInstanceEnablerFactoryTest$1.class
+org\eclipse\leshan\client\util\ObjectEnablerTest.class
+org\eclipse\leshan\client\util\ObjectsInitializerTest.class
+org\eclipse\leshan\client\util\LinkFormatHelperTest$2.class
+org\eclipse\leshan\client\util\ObjectEnablerTest$TestInstanceEnabler.class
+org\eclipse\leshan\client\send\ManualDataSenderTest$1.class
+org\eclipse\leshan\client\util\ServerTest.class
+org\eclipse\leshan\client\send\ManualDataSenderTest$FakeDataSenderManager$SendDataOutcome.class
+org\eclipse\leshan\client\util\BaseInstanceEnablerFactoryTest$2.class
+org\eclipse\leshan\client\util\LinkFormatHelperTest.class

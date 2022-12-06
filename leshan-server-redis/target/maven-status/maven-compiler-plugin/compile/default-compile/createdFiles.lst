@@ -1,0 +1,13 @@
+org\eclipse\leshan\server\redis\RedisSecurityStore.class
+org\eclipse\leshan\server\redis\serialization\RegistrationSerDes.class
+org\eclipse\leshan\server\redis\RedisRegistrationStore$Cleaner.class
+org\eclipse\leshan\server\redis\RedisRegistrationStore$1.class
+org\eclipse\leshan\server\redis\serialization\SecurityInfoSerDes.class
+org\eclipse\leshan\server\redis\serialization\ObservationSerDes.class
+org\eclipse\leshan\server\redis\RedisRegistrationStore.class
+org\eclipse\leshan\server\redis\RedisRegistrationStore$RedisIterator.class
+org\eclipse\leshan\server\redis\serialization\IdentitySerDes.class
+org\eclipse\leshan\server\redis\RedisLock.class
+org\eclipse\leshan\server\redis\JedisLock.class
+org\eclipse\leshan\server\redis\serialization\EndpointContextSerDes.class
+org\eclipse\leshan\server\redis\SingleInstanceJedisLock.class

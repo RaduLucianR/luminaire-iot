@@ -1,0 +1,10 @@
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\RedisRegistrationStore.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\serialization\EndpointContextSerDes.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\serialization\RegistrationSerDes.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\RedisLock.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\RedisSecurityStore.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\serialization\SecurityInfoSerDes.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\serialization\IdentitySerDes.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\SingleInstanceJedisLock.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\serialization\ObservationSerDes.java
+C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-server-redis\src\main\java\org\eclipse\leshan\server\redis\JedisLock.java

@@ -1,0 +1,11 @@
+org\eclipse\leshan\server\core\demo\cli\GeneralSection.class
+org\eclipse\leshan\server\core\demo\json\servlet\SecurityServlet.class
+org\eclipse\leshan\server\core\demo\json\JacksonSecuritySerializer.class
+org\eclipse\leshan\server\core\demo\cli\IdentitySection$X509Section.class
+org\eclipse\leshan\server\core\demo\cli\DtlsSection.class
+org\eclipse\leshan\server\core\demo\cli\IdentitySection.class
+org\eclipse\leshan\server\core\demo\cli\converters\ServerCIDConverter.class
+org\eclipse\leshan\server\core\demo\cli\IdentitySection$RpkSection.class
+org\eclipse\leshan\server\core\demo\json\PublicKeySerDes.class
+org\eclipse\leshan\server\core\demo\json\X509CertificateSerDes.class
+org\eclipse\leshan\server\core\demo\json\JacksonSecurityDeserializer.class

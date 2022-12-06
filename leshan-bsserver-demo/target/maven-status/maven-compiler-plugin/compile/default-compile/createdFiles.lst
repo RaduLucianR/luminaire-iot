@@ -1,0 +1,16 @@
+org\eclipse\leshan\server\bootstrap\demo\LeshanBootstrapServerDemo.class
+org\eclipse\leshan\server\bootstrap\demo\servlet\EventServlet.class
+org\eclipse\leshan\server\bootstrap\demo\json\EnumSetDeserializer.class
+org\eclipse\leshan\server\bootstrap\demo\json\EnumSetBindingModeDeserializer.class
+org\eclipse\leshan\server\bootstrap\demo\json\EnumSetSerializer.class
+org\eclipse\leshan\server\bootstrap\demo\servlet\BootstrapServlet.class
+org\eclipse\leshan\server\bootstrap\demo\servlet\EventServlet$BootstrapEvent.class
+org\eclipse\leshan\server\bootstrap\demo\json\ByteArraySerializer$ByteMode.class
+org\eclipse\leshan\server\bootstrap\demo\servlet\EventServlet$1.class
+org\eclipse\leshan\server\bootstrap\demo\cli\LeshanBsServerDemoCLI.class
+org\eclipse\leshan\server\bootstrap\demo\servlet\EventServlet$LeshanEventSource.class
+org\eclipse\leshan\server\bootstrap\demo\json\ByteArraySerializer.class
+org\eclipse\leshan\server\bootstrap\demo\cli\LeshanBsServerDemoCLI$BootstrapServerGeneralSection.class
+org\eclipse\leshan\server\bootstrap\demo\JSONFileBootstrapStore$1.class
+org\eclipse\leshan\server\bootstrap\demo\JSONFileBootstrapStore.class
+org\eclipse\leshan\server\bootstrap\demo\servlet\ServerServlet.class
