@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1670801232721
+Build-Jdk-Spec: 19
+Bundle-Description: Redis implementation for different stores of Leshan 
+ Server
+Bundle-License: http://www.eclipse.org/legal/epl-v20.html, http://www.ec
+ lipse.org/org/documents/edl-v10.html
+Bundle-ManifestVersion: 2
+Bundle-Name: leshan - server redis
+Bundle-SymbolicName: leshan-server-redis
+Bundle-Version: 2.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin 5.1.8
+Export-Package: org.eclipse.leshan.server.redis;version="2.0.0";uses:="o
+ rg.eclipse.californium.core.coap,org.eclipse.californium.core.observe,o
+ rg.eclipse.californium.elements,org.eclipse.leshan.core,org.eclipse.les
+ han.core.observation,org.eclipse.leshan.core.oscore,org.eclipse.leshan.
+ core.request,org.eclipse.leshan.server.californium.registration,org.ecl
+ ipse.leshan.server.redis.serialization,org.eclipse.leshan.server.regist
+ ration,org.eclipse.leshan.server.security,redis.clients.jedis,redis.cli
+ ents.jedis.params,redis.clients.jedis.util",org.eclipse.leshan.server.r
+ edis.serialization;version="2.0.0";uses:="com.fasterxml.jackson.databin
+ d,com.fasterxml.jackson.databind.node,org.eclipse.californium.core.obse
+ rve,org.eclipse.californium.elements,org.eclipse.leshan.core.link.attri
+ butes,org.eclipse.leshan.core.request,org.eclipse.leshan.server.registr
+ ation,org.eclipse.leshan.server.security"
+Import-Package: com.fasterxml.jackson.core;version="[2.14,3)",com.faster
+ xml.jackson.databind;version="[2.14,3)",com.fasterxml.jackson.databind.
+ node;version="[2.14,3)",javax.security.auth.x500,org.eclipse.californiu
+ m.core.coap;version="[3.7,4)",org.eclipse.californium.core.network.seri
+ alization;version="[3.7,4)",org.eclipse.californium.core.observe;versio
+ n="[3.7,4)",org.eclipse.californium.elements;version="[3.7,4)",org.ecli
+ pse.californium.elements.auth;version="[3.7,4)",org.eclipse.californium
+ .elements.util;version="[3.7,4)",org.eclipse.leshan.core;version="[2.0,
+ 3)",org.eclipse.leshan.core.californium;version="[2.0,3)",org.eclipse.l
+ eshan.core.link;version="[2.0,3)",org.eclipse.leshan.core.link.attribut
+ es;version="[2.0,3)",org.eclipse.leshan.core.link.lwm2m;version="[2.0,3
+ )",org.eclipse.leshan.core.link.lwm2m.attributes;version="[2.0,3)",org.
+ eclipse.leshan.core.node;version="[2.0,3)",org.eclipse.leshan.core.obse
+ rvation;version="[2.0,3)",org.eclipse.leshan.core.oscore;version="[2.0,
+ 3)",org.eclipse.leshan.core.request;version="[2.0,3)",org.eclipse.lesha
+ n.core.util;version="[2.0,3)",org.eclipse.leshan.server.californium.reg
+ istration;version="[2.0,3)",org.eclipse.leshan.server.redis.serializati
+ on;version="[2.0,3)",org.eclipse.leshan.server.registration;version="[2
+ .0,3)",org.eclipse.leshan.server.security;version="[2.0,3)",org.slf4j;v
+ ersion="[2.0,3)",redis.clients.jedis;version="[4.2,5)",redis.clients.je
+ dis.params;version="[4.2,5)",redis.clients.jedis.resps;version="[4.2,5)
+ ",redis.clients.jedis.util;version="[4.2,5)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-6.3.1.202206071316

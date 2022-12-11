@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1670801226696
+Build-Jdk-Spec: 19
+Bundle-Description: Shared classes between server and client which depen
+ ds on CoAP Californium
+Bundle-License: http://www.eclipse.org/legal/epl-v20.html, http://www.ec
+ lipse.org/org/documents/edl-v10.html
+Bundle-ManifestVersion: 2
+Bundle-Name: leshan - core californium
+Bundle-SymbolicName: leshan-core-cf
+Bundle-Version: 2.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin 5.1.8
+Export-Package: org.eclipse.leshan.core.californium;version="2.0.0";uses
+ :="org.eclipse.californium.core,org.eclipse.californium.core.coap,org.e
+ clipse.californium.core.network,org.eclipse.californium.core.observe,or
+ g.eclipse.californium.core.server.resources,org.eclipse.californium.ele
+ ments,org.eclipse.californium.elements.config,org.eclipse.californium.o
+ score,org.eclipse.californium.scandium.config,org.eclipse.leshan.core,o
+ rg.eclipse.leshan.core.node,org.eclipse.leshan.core.observation,org.ecl
+ ipse.leshan.core.request,org.eclipse.leshan.core.response",org.eclipse.
+ leshan.core.californium.oscore.cf;version="2.0.0";uses:="org.eclipse.ca
+ lifornium.cose,org.eclipse.californium.oscore"
+Import-Package: javax.security.auth.x500,org.eclipse.californium.core;ve
+ rsion="[3.7,4)",org.eclipse.californium.core.coap;version="[3.7,4)",org
+ .eclipse.californium.core.network;version="[3.7,4)",org.eclipse.califor
+ nium.core.observe;version="[3.7,4)",org.eclipse.californium.core.server
+ .resources;version="[3.7,4)",org.eclipse.californium.cose;version="[3.7
+ ,4)",org.eclipse.californium.elements;version="[3.7,4)",org.eclipse.cal
+ ifornium.elements.auth;version="[3.7,4)",org.eclipse.californium.elemen
+ ts.config;version="[3.7,4)",org.eclipse.californium.elements.exception;
+ version="[3.7,4)",org.eclipse.californium.oscore;version="[3.7,4)",org.
+ eclipse.californium.scandium;version="[3.7,4)",org.eclipse.californium.
+ scandium.config;version="[3.7,4)",org.eclipse.californium.scandium.dtls
+ ;version="[3.7,4)",org.eclipse.leshan.core;version="[2.0,3)",org.eclips
+ e.leshan.core.node;version="[2.0,3)",org.eclipse.leshan.core.observatio
+ n;version="[2.0,3)",org.eclipse.leshan.core.oscore;version="[2.0,3)",or
+ g.eclipse.leshan.core.request;version="[2.0,3)",org.eclipse.leshan.core
+ .request.exception;version="[2.0,3)",org.eclipse.leshan.core.response;v
+ ersion="[2.0,3)",org.eclipse.leshan.core.util;version="[2.0,3)",org.slf
+ 4j;version="[2.0,3)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-6.3.1.202206071316

@@ -30,6 +30,7 @@ import org.eclipse.leshan.core.util.NamedThreadFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.WindowConstants;
 import java.awt.event.ActionListener;
@@ -58,6 +59,9 @@ public class PresenceDetector extends BaseInstanceEnabler {
     // 2IMN15:  TODO  :  fill in
     //
     // Add state variables for interaction with the user (GUI, CLI, sensor.)
+	private JFrame guiFrame;
+	private JButton	btnProvokePresence;
+	private JButton btnCancelPresence;
     
     
     public PresenceDetector() {
@@ -71,6 +75,42 @@ public class PresenceDetector extends BaseInstanceEnabler {
 	// *  ...
 	//
 	// Call "setPresence(bool)" to inform observers.
+	
+		//  Automatically generated GUI code.
+		guiFrame = new JFrame();
+		guiFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		guiFrame.setTitle("Presence Detector");
+
+		// Create button that mimicks human presence detection
+		btnProvokePresence = new JButton("Provoke Presence");
+		btnProvokePresence.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				setPresence(true);
+				System.out.println("Presence provocked!");
+			}
+		});
+
+		btnCancelPresence = new JButton("Cancel Presence");
+		btnCancelPresence.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				setPresence(false);
+				System.out.println("Presence cancelled");
+			}
+		});
+	
+		// Create layout of labels, inputs and values.
+		GridLayout layout = new GridLayout(0,2,10,10);
+		guiFrame.getContentPane().setLayout(layout);
+		Container guiPane = guiFrame.getContentPane();
+		guiPane.add(btnProvokePresence);
+		guiPane.add(btnCancelPresence);
+		guiFrame.pack();
+		// Code to make the frame visible.
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				guiFrame.setVisible(true);
+			}
+		});
     }
 
     @Override

@@ -1,0 +1,58 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1670801229406
+Build-Jdk-Spec: 19
+Bundle-Description: A LWM2M server implementation which abstracts transp
+ ort layer. A transport implementation like "leshan-server-cf" is needed
+ .
+Bundle-License: http://www.eclipse.org/legal/epl-v20.html, http://www.ec
+ lipse.org/org/documents/edl-v10.html
+Bundle-ManifestVersion: 2
+Bundle-Name: leshan - server core
+Bundle-SymbolicName: leshan-server-core
+Bundle-Version: 2.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin 5.1.8
+Export-Package: org.eclipse.leshan.server.bootstrap;version="2.0.0";uses
+ :="org.eclipse.leshan.core,org.eclipse.leshan.core.link.lwm2m,org.eclip
+ se.leshan.core.model,org.eclipse.leshan.core.node,org.eclipse.leshan.co
+ re.request,org.eclipse.leshan.core.response,org.eclipse.leshan.core.uti
+ l.datatype,org.eclipse.leshan.server.model,org.eclipse.leshan.server.se
+ curity",org.eclipse.leshan.server.model;version="2.0.0";uses:="org.ecli
+ pse.leshan.core.model,org.eclipse.leshan.server.bootstrap,org.eclipse.l
+ eshan.server.registration",org.eclipse.leshan.server.observation;versio
+ n="2.0.0";uses:="org.eclipse.leshan.core.observation,org.eclipse.leshan
+ .core.response,org.eclipse.leshan.server.registration",org.eclipse.lesh
+ an.server.queue;version="2.0.0";uses:="org.eclipse.leshan.core,org.ecli
+ pse.leshan.core.observation,org.eclipse.leshan.core.request,org.eclipse
+ .leshan.core.response,org.eclipse.leshan.server.observation,org.eclipse
+ .leshan.server.registration,org.eclipse.leshan.server.request",org.ecli
+ pse.leshan.server.registration;version="2.0.0";uses:="org.eclipse.lesha
+ n.core,org.eclipse.leshan.core.link,org.eclipse.leshan.core.node,org.ec
+ lipse.leshan.core.observation,org.eclipse.leshan.core.request,org.eclip
+ se.leshan.core.response,org.eclipse.leshan.server.security",org.eclipse
+ .leshan.server.request;version="2.0.0";uses:="org.eclipse.leshan.core.r
+ equest,org.eclipse.leshan.core.response,org.eclipse.leshan.server.regis
+ tration",org.eclipse.leshan.server.security;version="2.0.0";uses:="org.
+ eclipse.leshan.core.oscore,org.eclipse.leshan.core.request,org.eclipse.
+ leshan.server.registration",org.eclipse.leshan.server.send;version="2.0
+ .0";uses:="org.eclipse.leshan.core.node,org.eclipse.leshan.core.request
+ ,org.eclipse.leshan.core.response,org.eclipse.leshan.server.registratio
+ n"
+Import-Package: org.eclipse.leshan.core;version="[2.0,3)",org.eclipse.le
+ shan.core.credentials;version="[2.0,3)",org.eclipse.leshan.core.link;ve
+ rsion="[2.0,3)",org.eclipse.leshan.core.link.attributes;version="[2.0,3
+ )",org.eclipse.leshan.core.link.lwm2m;version="[2.0,3)",org.eclipse.les
+ han.core.link.lwm2m.attributes;version="[2.0,3)",org.eclipse.leshan.cor
+ e.model;version="[2.0,3)",org.eclipse.leshan.core.node;version="[2.0,3)
+ ",org.eclipse.leshan.core.observation;version="[2.0,3)",org.eclipse.les
+ han.core.oscore;version="[2.0,3)",org.eclipse.leshan.core.request;versi
+ on="[2.0,3)",org.eclipse.leshan.core.request.exception;version="[2.0,3)
+ ",org.eclipse.leshan.core.response;version="[2.0,3)",org.eclipse.leshan
+ .core.util;version="[2.0,3)",org.eclipse.leshan.core.util.datatype;vers
+ ion="[2.0,3)",org.eclipse.leshan.server.bootstrap;version="[2.0,3)",org
+ .eclipse.leshan.server.model;version="[2.0,3)",org.eclipse.leshan.serve
+ r.observation;version="[2.0,3)",org.eclipse.leshan.server.registration;
+ version="[2.0,3)",org.eclipse.leshan.server.request;version="[2.0,3)",o
+ rg.eclipse.leshan.server.security;version="[2.0,3)",org.slf4j;version="
+ [2.0,3)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-6.3.1.202206071316

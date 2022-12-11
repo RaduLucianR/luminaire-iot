@@ -1,37 +1,37 @@
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\node\codec\LwM2mNodeDecoderTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\request\argument\ArgumentValidationTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\util\TestObjectLoader.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\response\ObserveCompositeResponseTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\VersionTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\request\argument\ArgumentsTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\senml\cbor\SenMLJsonSerDesTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\tlv\TlvDecoderTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\link\DefaultLinkSerializerTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\link\attributes\AttributeTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\util\X509CertUtilTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\request\WriteAttributesRequestTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\link\attributes\AttributeSetTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\link\MixedLwM2mLinkTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\util\TestLwM2mId.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\request\argument\ArgumentaSerializingTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\senml\cbor\SenMLTestUtil.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\node\TimestampedLwM2mNodesTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\senml\cbor\SenMLCborSerializerTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\request\argument\ArgumentsParsingTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\link\lwm2m\attributes\DefaultLwM2mAttributeParserTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\util\TimestampUtilTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\json\JsonDeserializerTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\json\JsonSerializerTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\node\codec\LwM2mNodeEncoderTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\model\ValidateModelsTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\senml\cbor\AbstractSenMLTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\datatype\NumberUtilTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\response\ObserveResponseTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\link\lwm2m\DefaultLwM2mLinkParserTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\link\LinkParserValidationTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\node\LwM2mParhTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\link\DefaultLinkParserTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\model\LwM2mModelRespositotyTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\node\LwM2MResourceTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\request\ContentFormatTest.java
-C:\Users\20191039\OneDrive - TU Eindhoven\Documents\2IMN15 IoT\Exercise 2\leshan-2IMN15\leshan-core\src\test\java\org\eclipse\leshan\core\tlv\TlvEncoderTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\response\ObserveResponseTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\util\TestLwM2mId.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\link\MixedLwM2mLinkTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\request\argument\ArgumentsTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\node\LwM2MResourceTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\senml\cbor\SenMLCborSerializerTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\node\codec\LwM2mNodeEncoderTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\response\ObserveCompositeResponseTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\link\DefaultLinkSerializerTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\model\LwM2mModelRespositotyTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\link\attributes\AttributeSetTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\VersionTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\request\argument\ArgumentValidationTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\request\ContentFormatTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\util\X509CertUtilTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\link\attributes\AttributeTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\senml\cbor\AbstractSenMLTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\request\argument\ArgumentaSerializingTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\tlv\TlvEncoderTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\tlv\TlvDecoderTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\util\TestObjectLoader.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\node\TimestampedLwM2mNodesTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\request\argument\ArgumentsParsingTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\model\ValidateModelsTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\link\lwm2m\DefaultLwM2mLinkParserTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\json\JsonSerializerTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\node\LwM2mParhTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\util\TimestampUtilTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\senml\cbor\SenMLTestUtil.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\json\JsonDeserializerTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\senml\cbor\SenMLJsonSerDesTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\link\DefaultLinkParserTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\request\WriteAttributesRequestTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\link\lwm2m\attributes\DefaultLwM2mAttributeParserTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\datatype\NumberUtilTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\link\LinkParserValidationTest.java
+C:\Users\20191039\Desktop\iot\2IMN15_ex2\leshan-core\src\test\java\org\eclipse\leshan\core\node\codec\LwM2mNodeDecoderTest.java

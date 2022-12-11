@@ -4,7 +4,6 @@ org\eclipse\leshan\core\datatype\NumberUtilTest.class
 org\eclipse\leshan\core\request\ContentFormatTest.class
 org\eclipse\leshan\core\response\ObserveResponseTest$2.class
 org\eclipse\leshan\core\request\argument\ArgumentsParsingTest.class
-org\eclipse\leshan\core\json\JsonDeserializerTest.class
 org\eclipse\leshan\core\request\WriteAttributesRequestTest.class
 org\eclipse\leshan\core\model\LwM2mModelRespositotyTest.class
 org\eclipse\leshan\core\node\codec\LwM2mNodeEncoderTest.class
