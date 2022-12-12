@@ -85,8 +85,6 @@ public class Luminaire extends BaseInstanceEnabler {
 	// *  external application
 	// *  ...
 	//
-		//setType("LED");
-		//setPeakPower(100);
 	  //  Automatically generated GUI code.
 		guiFrame = new JFrame();
 		guiFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -181,6 +179,7 @@ public class Luminaire extends BaseInstanceEnabler {
     public void configure(String lumtype, long peakpower) {
 	vType = lumtype;
 	vPeakPower = peakpower;
+	System.out.println(vType + " " + vPeakPower);
     }
     
     private synchronized void setPower(boolean value) {
@@ -191,6 +190,7 @@ public class Luminaire extends BaseInstanceEnabler {
 	    //
 	    // RoomControl has change the power.
 	    // Update the UI.
+		gvPower.setText(Boolean.toString(value));
 	    fireResourceChange(RES_POWER);
 	}
     }
@@ -217,6 +217,7 @@ public class Luminaire extends BaseInstanceEnabler {
 	    //
 	    // RoomControl has change the dim level.
 	    // Update the UI.
+		gvDimLevel.setText(Long.toString(value));
 	    fireResourceChange(RES_DIM_LEVEL);
 	}
     }
