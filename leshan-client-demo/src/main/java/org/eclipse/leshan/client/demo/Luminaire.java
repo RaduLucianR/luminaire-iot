@@ -67,6 +67,13 @@ public class Luminaire extends BaseInstanceEnabler {
     // 2IMN15:  TODO  :  fill in
     //
     // Add state variables for the user interface.
+	private JLabel glPower;
+	private JLabel gvPower;
+	private JLabel glDimLevel;
+	private JLabel gvDimLevel;
+	private JLabel glInstantPower;
+	private JLabel gvInstantPower;
+	private JFrame guiFrame;
     
     public Luminaire() {
 	//
@@ -78,7 +85,49 @@ public class Luminaire extends BaseInstanceEnabler {
 	// *  external application
 	// *  ...
 	//
+		//setType("LED");
+		//setPeakPower(100);
+	  //  Automatically generated GUI code.
+		guiFrame = new JFrame();
+		guiFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		guiFrame.setTitle("Luminaire");
+	
+		// Power
+		glPower = new JLabel();
+		glPower.setText("Power");
+		gvPower = new JLabel();
+		gvPower.setText(Boolean.toString(vPower));
 
+		//Dim Level
+		glDimLevel = new JLabel();
+		glDimLevel.setText("Dim Level");
+		gvDimLevel = new JLabel();
+		gvDimLevel.setText(Long.toString(vDimLevel));
+		
+		//Instant Power
+		glInstantPower = new JLabel();
+		glInstantPower.setText("Instant Power");
+		gvInstantPower = new JLabel();
+		gvInstantPower.setText(Long.toString(vDimLevel * vPeakPower));
+	
+		// Create layout of labels, inputs and values.
+		GridLayout layout = new GridLayout(0,6,10,10);
+		guiFrame.getContentPane().setLayout(layout);
+		Container guiPane = guiFrame.getContentPane();
+		guiPane.add(glPower);
+		guiPane.add(gvPower);
+		guiPane.add(glDimLevel);
+		guiPane.add(gvDimLevel);
+		guiPane.add(glInstantPower);
+		guiPane.add(gvInstantPower);
+
+		guiFrame.pack();
+		// Code to make the frame visible.
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+			guiFrame.setVisible(true);
+			}
+		});
     }
 
     @Override
