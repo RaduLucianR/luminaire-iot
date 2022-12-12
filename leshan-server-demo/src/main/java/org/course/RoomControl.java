@@ -71,6 +71,7 @@ public class RoomControl {
 	    // 2IMN15:  TODO  :  fill in
 	    //
 	    // Process the registration of a new Presence Detector.
+		
         }
 
         if (supportedObject.get(Constants.LUMINAIRE_ID) != null) {
