@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="leshan-server-core-demo" />
+        <module name="leshan-bsserver-demo" />
+        <module name="leshan-client-cf" />
+        <module name="leshan-client-core" />
+        <module name="leshan-core-demo" />
+        <module name="leshan-core-cf" />
+        <module name="leshan-server-demo" />
+        <module name="leshan-client-demo" />
+        <module name="leshan-integration-tests" />
+        <module name="leshan-server-cf" />
+        <module name="leshan-core" />
+        <module name="leshan-server-core" />
+        <module name="leshan-server-redis" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
