@@ -145,11 +145,24 @@ public class RoomControl {
             //    registration.getEndpoint()
             //    observation.getPath()
 
-
             // For processing an update of the Demand Response object.
             // It contains some example code.
             int newPowerBudget = observedDemandResponse(observation, response);
+			int newPresenceState = observedPresenceDetector(observation, response);
 
+			if (newPresenceState == 1) {
+				writeBoolean(registration, 
+                    Constants.PRESENCE_DETECTOR_ID,
+                    observation.getPath().getObjectInstanceId(),
+                    Constants.RES_POWER, 
+                    true);
+			} else if (newPresenceState == 0) {
+				writeBoolean(registration, 
+                    Constants.PRESENCE_DETECTOR_ID,
+                    observation.getPath().getObjectInstanceId(),
+                    Constants.RES_POWER, 
+                    false);
+			}
         }
     }
 
@@ -207,6 +220,7 @@ public class RoomControl {
         }
         return type;
     }
+
     private static int registerPeakPowerLuminaire(Registration registration) {
         int peakPower = readInteger(registration,
                 Constants.LUMINAIRE_ID,
@@ -322,6 +336,26 @@ public class RoomControl {
                 return newPowerBudget;
             } catch (Exception e) {
                 System.out.println("Exception in reading demand response:" + e.getMessage());
+            }
+        }
+        return -1;
+    }
+
+	private static int observedPresenceDetector(SingleObservation observation,
+                                              ObserveResponse response) {
+        LwM2mPath obsPath = observation.getPath();
+        if ((obsPath.getObjectId() == Constants.PRESENCE_DETECTOR_ID) &&
+                (obsPath.getResourceId() == Constants.RES_PRESENCE)) {
+            String strValue = ((LwM2mResource) response.getContent()).getValue().toString();
+            try {
+                boolean newPresenceState = Boolean.parseBoolean(strValue);
+				if (newPresenceState) {
+					return 1;
+				} else {
+					return 0;
+				}
+            } catch (Exception e) {
+                System.out.println("Exception in reading presence detection response:" + e.getMessage());
             }
         }
         return -1;

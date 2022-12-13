@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1670861529939
+Bnd-LastModified: 1670931182863
 Build-Jdk-Spec: 19
 Bundle-Description: A transport implementation for leshan client based o
  n CoAP Californium
