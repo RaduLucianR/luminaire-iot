@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1670931173944
+Bnd-LastModified: 1670956963028
 Build-Jdk-Spec: 19
 Bundle-Description: Core classes for implementing Lightweight M2M
 Bundle-License: http://www.eclipse.org/legal/epl-v20.html, http://www.ec

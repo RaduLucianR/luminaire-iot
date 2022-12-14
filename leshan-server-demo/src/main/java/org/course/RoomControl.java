@@ -6,13 +6,11 @@ package org.course;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.io.PrintWriter;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.eclipse.leshan.server.californium.LeshanServer;
 import org.eclipse.leshan.server.registration.Registration;
 import org.eclipse.leshan.core.response.WriteResponse;
@@ -25,6 +23,8 @@ import org.eclipse.leshan.core.request.WriteRequest.Mode;
 import org.eclipse.leshan.core.node.LwM2mResource;
 import org.eclipse.leshan.core.node.LwM2mPath;
 import org.eclipse.leshan.core.observation.SingleObservation;
+
+import static java.lang.Thread.sleep;
 
 
 public class RoomControl {
@@ -41,7 +41,10 @@ public class RoomControl {
     //
     static int maxRoomPeakPower = 0;
     static Map<String, Integer> powerMap = new HashMap<String, Integer>();
-    static ArrayList<String> luminaireIDList = new ArrayList<>();
+    static ArrayList<Registration> registrationLuminaire = new ArrayList<>();
+    static float RoomDimLevel = 0;
+    static boolean presence;
+    static int powerBudget;
 
     public static void Initialize(LeshanServer server) {
         // Register the LWM2M server object for future use
@@ -67,17 +70,18 @@ public class RoomControl {
                 registration.getSupportedObject();
 
         if (supportedObject.get(Constants.PRESENCE_DETECTOR_ID) != null) {
-            System.out.println("Presence Detector "  + registration.getEndpoint());
+            System.out.println("Presence Detector " + registration.getEndpoint());
 
             //
             // 2IMN15:  TODO  :  fill in
             //
-            boolean presence = registerPresenceDetector(registration);
+            presence = registerPresenceDetector(registration);
+            System.out.println("global pr" + presence);
         }
 
         if (supportedObject.get(Constants.LUMINAIRE_ID) != null) {
             System.out.println("Luminaire " + registration.getEndpoint());
-            luminaireIDList.add(registration.getEndpoint());
+            registrationLuminaire.add(registration);
 
             //
             // 2IMN15:  TODO  :  fill in
@@ -87,10 +91,29 @@ public class RoomControl {
             maxRoomPeakPower += peakPower;
             powerMap.put(registration.getId(), peakPower);
             System.out.println(maxRoomPeakPower);
+            System.out.println(powerBudget);
+            RoomDimLevel = ((float) powerBudget / (float) maxRoomPeakPower) * 100;
+            if (RoomDimLevel > 100) {
+                RoomDimLevel = 100;
+            }
+            System.out.println(RoomDimLevel);
             String type = registerTypeLuminaire(registration);
             boolean power = registerPowerLuminaire(registration);
             int dimLevel = registerDimLevelLuminaire(registration);
-
+            for (int i = 0; i < registrationLuminaire.size(); i++) {
+                writeInteger(registrationLuminaire.get(i),
+                        Constants.LUMINAIRE_ID,
+                        0,
+                        Constants.RES_DIM_LEVEL,
+                        (int) RoomDimLevel);
+            }
+            for (int i = 0; i < registrationLuminaire.size(); i++) {
+                writeBoolean(registrationLuminaire.get(i),
+                        Constants.LUMINAIRE_ID,
+                        0,
+                        Constants.RES_POWER,
+                        presence);
+            }
         }
 
         if (supportedObject.get(Constants.DEMAND_RESPONSE_ID) != null) {
@@ -99,7 +122,11 @@ public class RoomControl {
             // The registerDemandResponse() method contains example code
             // on how handle a registration.
             //
-            int powerBudget = registerDemandResponse(registration);
+            powerBudget = registerDemandResponse(registration);
+            RoomDimLevel = ((float) powerBudget / (float) maxRoomPeakPower) * 100;
+            if (RoomDimLevel > 100) {
+                RoomDimLevel = 100;
+            }
         }
 
         //  2IMN15: don't forget to update the other luminaires.
@@ -116,12 +143,13 @@ public class RoomControl {
                 registration.getSupportedObject();
 
         if (supportedObject.get(Constants.PRESENCE_DETECTOR_ID) != null) {
-            System.out.println("Presence Detector Left "  + registration.getEndpoint());
+            System.out.println("Presence Detector Left " + registration.getEndpoint());
         }
 
         if (supportedObject.get(Constants.LUMINAIRE_ID) != null) {
             maxRoomPeakPower -= powerMap.get(registration.getId());
-            System.out.println(maxRoomPeakPower);
+            powerMap.remove(registration.getId());
+            registrationLuminaire.remove(registration);
             System.out.println("Luminaire Left " + registration.getEndpoint());
         }
 
@@ -133,7 +161,7 @@ public class RoomControl {
 
     public static void handleObserveResponse(SingleObservation observation,
                                              Registration registration,
-                                             ObserveResponse response) {
+                                             ObserveResponse response) throws InterruptedException {
         if (registration != null && observation != null && response != null) {
             //
             // 2IMN15:  TODO  :  fill in
@@ -148,21 +176,53 @@ public class RoomControl {
             // For processing an update of the Demand Response object.
             // It contains some example code.
             int newPowerBudget = observedDemandResponse(observation, response);
-			int newPresenceState = observedPresenceDetector(observation, response);
+            System.out.println(newPowerBudget);
+            //new dim level = (Total allowed peak room power / Maximum peak room power) * 100
+            if (newPowerBudget > 500) {
+                newPowerBudget = 500;
+            }
+            if (newPowerBudget > 0) {
+                powerBudget = newPowerBudget;
+                RoomDimLevel = ((float) newPowerBudget / (float) maxRoomPeakPower) * 100;
+                System.out.println(RoomDimLevel);
+                if (RoomDimLevel > 100) {
+                    RoomDimLevel = 100;
+                }
+            }
 
-			if (newPresenceState == 1) {
-				writeBoolean(registration, 
-                    Constants.PRESENCE_DETECTOR_ID,
-                    observation.getPath().getObjectInstanceId(),
-                    Constants.RES_POWER, 
-                    true);
-			} else if (newPresenceState == 0) {
-				writeBoolean(registration, 
-                    Constants.PRESENCE_DETECTOR_ID,
-                    observation.getPath().getObjectInstanceId(),
-                    Constants.RES_POWER, 
-                    false);
-			}
+            for (int i = 0; i < registrationLuminaire.size(); i++) {
+                writeInteger(registrationLuminaire.get(i),
+                        Constants.LUMINAIRE_ID,
+                        0,
+                        Constants.RES_DIM_LEVEL,
+                        (int) RoomDimLevel);
+            }
+
+            int newPresenceState = observedPresenceDetector(observation, response);
+
+            if (newPresenceState == 1) {
+                presence = Boolean.TRUE;
+            } else if (newPresenceState == 0) {
+                presence = Boolean.FALSE;
+            }
+
+            if (newPresenceState == 1) {
+                for (int i = 0; i < registrationLuminaire.size(); i++) {
+                    writeBoolean(registrationLuminaire.get(i),
+                            Constants.LUMINAIRE_ID,
+                            0,
+                            Constants.RES_POWER,
+                            true);
+                }
+            } else if (newPresenceState == 0) {
+                for (int i = 0; i < registrationLuminaire.size(); i++) {
+                    writeBoolean(registrationLuminaire.get(i),
+                            Constants.LUMINAIRE_ID,
+                            0,
+                            Constants.RES_POWER,
+                            false);
+                }
+            }
         }
     }
 
@@ -245,6 +305,7 @@ public class RoomControl {
         }
         return peakPower;
     }
+
     private static boolean registerPowerLuminaire(Registration registration) {
         boolean power = readBoolean(registration,
                 Constants.LUMINAIRE_ID,
@@ -269,6 +330,7 @@ public class RoomControl {
         }
         return power;
     }
+
     private static int registerDimLevelLuminaire(Registration registration) {
         int dimLevel = readInteger(registration,
                 Constants.LUMINAIRE_ID,
@@ -332,7 +394,7 @@ public class RoomControl {
             String strValue = ((LwM2mResource) response.getContent()).getValue().toString();
             try {
                 int newPowerBudget = Integer.parseInt(strValue);
-
+                System.out.println(newPowerBudget);
                 return newPowerBudget;
             } catch (Exception e) {
                 System.out.println("Exception in reading demand response:" + e.getMessage());
@@ -341,19 +403,19 @@ public class RoomControl {
         return -1;
     }
 
-	private static int observedPresenceDetector(SingleObservation observation,
-                                              ObserveResponse response) {
+    private static int observedPresenceDetector(SingleObservation observation,
+                                                ObserveResponse response) {
         LwM2mPath obsPath = observation.getPath();
         if ((obsPath.getObjectId() == Constants.PRESENCE_DETECTOR_ID) &&
                 (obsPath.getResourceId() == Constants.RES_PRESENCE)) {
             String strValue = ((LwM2mResource) response.getContent()).getValue().toString();
             try {
                 boolean newPresenceState = Boolean.parseBoolean(strValue);
-				if (newPresenceState) {
-					return 1;
-				} else {
-					return 0;
-				}
+                if (newPresenceState) {
+                    return 1;
+                } else {
+                    return 0;
+                }
             } catch (Exception e) {
                 System.out.println("Exception in reading presence detection response:" + e.getMessage());
             }

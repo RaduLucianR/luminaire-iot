@@ -106,7 +106,7 @@ public class Luminaire extends BaseInstanceEnabler {
 		glInstantPower = new JLabel();
 		glInstantPower.setText("Instant Power");
 		gvInstantPower = new JLabel();
-		gvInstantPower.setText(Long.toString(vDimLevel * vPeakPower));
+		gvInstantPower.setText(Long.toString((100-vDimLevel)/100 * vPeakPower));
 	
 		// Create layout of labels, inputs and values.
 		GridLayout layout = new GridLayout(0,6,10,10);
@@ -148,8 +148,8 @@ public class Luminaire extends BaseInstanceEnabler {
     public WriteResponse write(ServerIdentity identity, boolean replace, int resourceId, LwM2mResource value) {
 	switch (resourceId) {
 	case RES_POWER:
-	    // vPower = (Boolean) value.getValue();
-	    // fireResourceChange(resourceId);
+	    //vPower = (Boolean) value.getValue();
+	    //fireResourceChange(resourceId);
 	    setPower((Boolean) value.getValue());
 	    return WriteResponse.success();
 	case RES_DIM_LEVEL:
