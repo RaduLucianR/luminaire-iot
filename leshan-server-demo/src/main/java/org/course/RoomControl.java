@@ -47,7 +47,7 @@ public class RoomControl {
     /**
      * Global array list to keep track of all the registrations of luminaires
      */
-    static ArrayList<Registration> registrationLuminaire;
+    static Map<String, Registration> registrationLuminaire;
     /**
      * Global variable to keep track of the dim level of each of the luminaires
      */
@@ -80,11 +80,13 @@ public class RoomControl {
         //
         // Initialize the state variables.
         powerMap = new HashMap<String, Integer>();
-        registrationLuminaire = new ArrayList<>();
+        registrationLuminaire = new HashMap<>();
         // Initialize max room peak power to 0 (corresponding to 0 luminaires
         // being registered)
         maxRoomPeakPower = 0;
         allowedType = new ArrayList<>();
+        presence = Boolean.FALSE;
+        powerBudget = 0;
         // Allowed types - can be extended
         allowedType.add("LED");
         allowedType.add("Halogen");
@@ -104,8 +106,8 @@ public class RoomControl {
      * It is used to disseminate for each registered luminare the global dim level
      */
     public static void handleDimLevel() {
-        for (Registration registration : registrationLuminaire) {
-            writeInteger(registration,
+        for (Map.Entry<String, Registration> entry : registrationLuminaire.entrySet()) {
+            writeInteger(entry.getValue(),
                     Constants.LUMINAIRE_ID,
                     0,
                     Constants.RES_DIM_LEVEL,
@@ -122,60 +124,13 @@ public class RoomControl {
      * the presence detector
      */
     public static void handlePower() {
-        for (Registration registration : registrationLuminaire) {
-            writeBoolean(registration,
+        for (Map.Entry<String, Registration> entry : registrationLuminaire.entrySet()) {
+            writeBoolean(entry.getValue(),
                     Constants.LUMINAIRE_ID,
                     0,
                     Constants.RES_POWER,
                     presence);
         }
-    }
-
-    /**
-     * handleType() function
-     * <p>
-     * Function used to disseminate back to the GUI the received parameter for type
-     * Function does not take into account the allowed types
-     * It will show exactly the type that is given in the CLI command
-     * <p>
-     * NOTE: This is not required and could have been implemented in the GUI directly
-     * This allows for further functionality of possibly changing the type of the luminaire
-     * from the GUI of the RoomControl itself
-     * How useful that would be is up to discussion
-     *
-     * @param registration of type Registration
-     * @param type         of type String
-     */
-    public static void handleType(Registration registration, String type) {
-        System.out.println(type);
-        writeString(registration,
-                Constants.LUMINAIRE_ID,
-                0,
-                Constants.RES_TYPE,
-                type);
-    }
-
-    /**
-     * handlePeakPower() function
-     * <p>
-     * Function used to disseminate back to the GUI the received parameter for peakPower
-     * Function does not take into account the allowed types
-     * It will show exactly the type that is given in the CLI command
-     * <p>
-     * NOTE: This is not required and could have been implemented in the GUI directly
-     * This allows for further functionality of possibly changing the peak power of the luminaire
-     * from the GUI of the RoomControl itself
-     * How useful that would be is up to discussion
-     *
-     * @param registration of type Registration
-     * @param peakPower    of type int
-     */
-    public static void handlePeakPower(Registration registration, int peakPower) {
-        writeInteger(registration,
-                Constants.LUMINAIRE_ID,
-                0,
-                Constants.RES_PEAK_POWER,
-                peakPower);
     }
 
     /**
@@ -216,13 +171,13 @@ public class RoomControl {
      */
     public static void luminaireRegistrationMonitor(Registration registration, Integer peakPower, String method) {
         if (Objects.equals(method, "ADD LUMINAIRE")) {
-            registrationLuminaire.add(registration);
+            registrationLuminaire.put(registration.getId(),registration);
             maxRoomPeakPower += peakPower;
             powerMap.put(registration.getId(), peakPower);
         } else if (Objects.equals(method, "REMOVE LUMINAIRE")) {
             maxRoomPeakPower -= powerMap.get(registration.getId());
             powerMap.remove(registration.getId());
-            registrationLuminaire.remove(registration);
+            registrationLuminaire.remove(registration.getId());
         }
 
     }
@@ -293,8 +248,6 @@ public class RoomControl {
             String type = registerTypeLuminaire(registration);
             // check if the type is allowed
             handleAllowedTypes(registration, type);
-            // disseminate the type back to the GUI
-            handleType(registration, type);
 
             System.out.println("Luminaire " + registration.getEndpoint());
 
@@ -305,8 +258,6 @@ public class RoomControl {
 
             // Get the peak power of the luminaire
             int peakPower = registerPeakPowerLuminaire(registration);
-            // Disseminate the peak power back to the GUI
-            handlePeakPower(registration, peakPower);
 
             // Handle the registration of the luminaire
             luminaireRegistrationMonitor(registration, peakPower, "ADD LUMINAIRE");
