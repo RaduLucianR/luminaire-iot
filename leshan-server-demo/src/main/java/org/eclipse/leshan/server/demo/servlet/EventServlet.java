@@ -182,9 +182,17 @@ public class EventServlet extends EventSourceServlet {
             }
 
             if (registration != null) {
+                /*
+                  THIS HAS BEEN MODIFIED BY US
+                  <p>
+                  It includes a try catch block, because the compiler was complaining.
+                 */
 		// 2IMN15: Inform about observe notification.
-		RoomControl.handleObserveResponse(observation, registration,response);
-
+                try {
+                    RoomControl.handleObserveResponse(observation, registration,response);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 String data = new StringBuilder("{\"ep\":\"") //
                         .append(registration.getEndpoint()) //
                         .append("\",\"kind\":\"single\"") //

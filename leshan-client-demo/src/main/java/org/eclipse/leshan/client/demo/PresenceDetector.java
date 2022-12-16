@@ -46,123 +46,134 @@ public class PresenceDetector extends BaseInstanceEnabler {
     private static final int RES_POWER = 30000;
     private static final int RES_PRESENCE = 30001;
     private static final List<Integer> supportedResources =
-     Arrays.asList(
-             RES_POWER
-           , RES_PRESENCE
-           );
+            Arrays.asList(
+                    RES_POWER
+                    , RES_PRESENCE
+            );
     // Variables storing current values.
 
+    /**
+     * Variable to store the power of the Presence Detecotr
+     * <p>
+     * Not used in current code
+     */
     private boolean vPower = false;
+    /**
+     * Variable to store the status of the presence
+     * Changes state by user interaction with buttons
+     */
     private boolean vPresence = false;
 
     //
     // 2IMN15:  TODO  :  fill in
     //
     // Add state variables for interaction with the user (GUI, CLI, sensor.)
-	private JFrame guiFrame;
-	private JButton	btnProvokePresence;
-	private JButton btnCancelPresence;
-    
-    
+    /**
+     * Declare GUI frame
+     */
+    private final JFrame guiFrame;
+
+
     public PresenceDetector() {
-	//
-	// 2IMN15:  TODO  :  fill in
-	//
-	// Create an interface to enable presence detection
-	// Options:
-	// *  GUI     (see DemandResponse.java for an Swing/AWT example)
-	// *  external application
-	// *  ...
-	//
-	// Call "setPresence(bool)" to inform observers.
-	
-		//  Automatically generated GUI code.
-		guiFrame = new JFrame();
-		guiFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		guiFrame.setTitle("Presence Detector");
+        //
+        // 2IMN15:  TODO  :  fill in
+        //
+        // Create an interface to enable presence detection
+        // Options:
+        // *  GUI     (see DemandResponse.java for an Swing/AWT example)
+        // *  external application
+        // *  ...
+        //
+        // Call "setPresence(bool)" to inform observers.
 
-		// Create button that mimicks human presence detection
-		btnProvokePresence = new JButton("Provoke Presence");
-		btnProvokePresence.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				setPresence(true);
-				System.out.println("Presence provocked!");
-			}
-		});
+        //  Automatically generated GUI code.
+        guiFrame = new JFrame();
+        guiFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        guiFrame.setTitle("Presence Detector");
 
-		btnCancelPresence = new JButton("Cancel Presence");
-		btnCancelPresence.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				setPresence(false);
-				System.out.println("Presence cancelled");
-			}
-		});
-	
-		// Create layout of labels, inputs and values.
-		GridLayout layout = new GridLayout(0,2,10,10);
-		guiFrame.getContentPane().setLayout(layout);
-		Container guiPane = guiFrame.getContentPane();
-		guiPane.add(btnProvokePresence);
-		guiPane.add(btnCancelPresence);
-		guiFrame.pack();
-		// Code to make the frame visible.
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				guiFrame.setVisible(true);
-			}
-		});
+        // Create button that mimics human presence detection
+        JButton btnProvokePresence = new JButton("Provoke Presence");
+        // Action listener for button
+        btnProvokePresence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // Set presence to true
+                setPresence(true);
+                // Debug info
+                System.out.println("Presence provoked!");
+            }
+        });
+
+        // Create button that mimics human presence deetecion
+        JButton btnCancelPresence = new JButton("Cancel Presence");
+        // Action listener for button
+        btnCancelPresence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                // set presence to false
+                setPresence(false);
+                // Debug info
+                System.out.println("Presence cancelled");
+            }
+        });
+
+        // Create layout of labels, inputs and values.
+        GridLayout layout = new GridLayout(0, 2, 10, 10);
+        guiFrame.getContentPane().setLayout(layout);
+        Container guiPane = guiFrame.getContentPane();
+        guiPane.add(btnProvokePresence);
+        guiPane.add(btnCancelPresence);
+        guiFrame.pack();
+        // Code to make the frame visible.
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                guiFrame.setVisible(true);
+            }
+        });
     }
 
     @Override
     public synchronized ReadResponse read(ServerIdentity identity, int resourceId) {
-	switch (resourceId) {
-	case RES_POWER:
-	    return ReadResponse.success(resourceId, vPower);
-	case RES_PRESENCE:
-	    return ReadResponse.success(resourceId, vPresence);
-	default:
-	    return super.read(identity, resourceId);
-	}
+        switch (resourceId) {
+            case RES_POWER:
+                return ReadResponse.success(resourceId, vPower);
+            case RES_PRESENCE:
+                return ReadResponse.success(resourceId, vPresence);
+            default:
+                return super.read(identity, resourceId);
+        }
     }
-    
+
     @Override
     public WriteResponse write(ServerIdentity identity, boolean replace, int resourceId, LwM2mResource value) {
-	switch (resourceId) {
-	case RES_POWER:
-	    // vPower = (Boolean) value.getValue();
-	    // fireResourceChange(resourceId);
-	    setPower((Boolean) value.getValue());
-	    return WriteResponse.success();
-	default:
-	    return super.write(identity, replace, resourceId,value);
-	}
+        if (resourceId == RES_POWER) {// vPower = (Boolean) value.getValue();
+            // fireResourceChange(resourceId);
+            setPower((Boolean) value.getValue());
+            return WriteResponse.success();
+        }
+        return super.write(identity, replace, resourceId, value);
     }
 
     @Override
     public synchronized ExecuteResponse execute(ServerIdentity identity, int resourceId, Arguments arguments) {
-	switch (resourceId) {
-	default:
-	    return super.execute(identity, resourceId,arguments);
-	}
+        return super.execute(identity, resourceId, arguments);
     }
-    
+
     @Override
     public List<Integer> getAvailableResourceIds(ObjectModel model) {
-	return supportedResources;
+        return supportedResources;
     }
 
     private synchronized void setPower(boolean value) {
-	if (vPower != value) {
-	    vPower = value;
-	    fireResourceChange(RES_POWER);
-	}
+        if (vPower != value) {
+            vPower = value;
+            fireResourceChange(RES_POWER);
+        }
     }
-    
+
     private synchronized void setPresence(boolean value) {
-	if (vPresence != value) {
-	    vPresence = value;
-	    fireResourceChange(RES_PRESENCE);
-	}
+        if (vPresence != value) {
+            vPresence = value;
+            fireResourceChange(RES_PRESENCE);
+        }
     }
-    
+
 }

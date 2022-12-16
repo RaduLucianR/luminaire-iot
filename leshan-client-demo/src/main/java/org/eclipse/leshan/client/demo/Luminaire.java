@@ -5,14 +5,12 @@ package org.eclipse.leshan.client.demo;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Random;
-import java.util.List;
-import java.util.Arrays;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.Scanner;
 
+import jdk.internal.net.http.frame.SettingsFrame;
 import org.eclipse.leshan.client.servers.ServerIdentity;
 import org.eclipse.leshan.client.resource.BaseInstanceEnabler;
 import org.eclipse.leshan.core.model.ResourceModel.Type;
@@ -45,181 +43,205 @@ public class Luminaire extends BaseInstanceEnabler {
     private static final int RES_PEAK_POWER = 30003;
     private static final int RES_DIM_LEVEL = 30004;
     private static final List<Integer> supportedResources =
-     Arrays.asList(
-             RES_POWER
-           , RES_TYPE
-           , RES_PEAK_POWER
-           , RES_DIM_LEVEL
-           );
+            Arrays.asList(
+                    RES_POWER
+                    , RES_TYPE
+                    , RES_PEAK_POWER
+                    , RES_DIM_LEVEL
+            );
     // Variables storing current values.
 
     private boolean vPower = false;
 
     // LED, Halogen
-    private String vType = "";
+    private String vType;
 
-    private long vPeakPower = 0;
+    private long vPeakPower;
 
     // 0..100
     private long vDimLevel = 0;
 
-    //
-    // 2IMN15:  TODO  :  fill in
-    //
-    // Add state variables for the user interface.
-	private JLabel glPower;
-	private JLabel gvPower;
-	private JLabel glDimLevel;
-	private JLabel gvDimLevel;
-	private JLabel glInstantPower;
-	private JLabel gvInstantPower;
-	private JFrame guiFrame;
-    
+    /**
+     * Variables for values in GUI
+     * Power, Dim Level, Type, Peak Power and frame declaration itself
+     */
+    private final JLabel gvPower;
+    private final JLabel gvDimLevel;
+
+    private final JLabel gvType;
+
+    private final JLabel gvPeakPower;
+    private final JFrame guiFrame;
+
     public Luminaire() {
-	//
-	// 2IMN15:  TODO  :  fill in
-	//
-	// Create an interface to display the luminaire state.
-	// Options:
-	// *  GUI     (see DemandResponse.java for an Swing/AWT example)
-	// *  external application
-	// *  ...
-	//
-	  //  Automatically generated GUI code.
-		guiFrame = new JFrame();
-		guiFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		guiFrame.setTitle("Luminaire");
-	
-		// Power
-		glPower = new JLabel();
-		glPower.setText("Power");
-		gvPower = new JLabel();
-		gvPower.setText(Boolean.toString(vPower));
+        //
+        // 2IMN15:  TODO  :  fill in
+        //
+        // Create an interface to display the luminaire state.
+        // Options:
+        // *  GUI     (see DemandResponse.java for an Swing/AWT example)
+        // *  external application
+        // *  ...
+        //
+        //  Automatically generated GUI code.
+        guiFrame = new JFrame();
+        guiFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        guiFrame.setTitle("Luminaire");
 
-		//Dim Level
-		glDimLevel = new JLabel();
-		glDimLevel.setText("Dim Level");
-		gvDimLevel = new JLabel();
-		gvDimLevel.setText(Long.toString(vDimLevel));
-		
-		//Instant Power
-		glInstantPower = new JLabel();
-		glInstantPower.setText("Instant Power");
-		gvInstantPower = new JLabel();
-		gvInstantPower.setText(Long.toString(vDimLevel * vPeakPower));
-	
-		// Create layout of labels, inputs and values.
-		GridLayout layout = new GridLayout(0,6,10,10);
-		guiFrame.getContentPane().setLayout(layout);
-		Container guiPane = guiFrame.getContentPane();
-		guiPane.add(glPower);
-		guiPane.add(gvPower);
-		guiPane.add(glDimLevel);
-		guiPane.add(gvDimLevel);
-		guiPane.add(glInstantPower);
-		guiPane.add(gvInstantPower);
+        // Power
+        //
+        // 2IMN15:  TODO  :  fill in
+        //
+        // Add state variables for the user interface.
+        JLabel glPower = new JLabel();
 
-		guiFrame.pack();
-		// Code to make the frame visible.
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-			guiFrame.setVisible(true);
-			}
-		});
+        // Power field (TRUE/FALSE corresponding to ON/OFF)
+        glPower.setText("Power");
+        gvPower = new JLabel();
+        gvPower.setText(Boolean.toString(vPower));
+
+        //Dim Level (0-100)
+        JLabel glDimLevel = new JLabel();
+        glDimLevel.setText("Dim Level");
+        gvDimLevel = new JLabel();
+        gvDimLevel.setText(Long.toString(vDimLevel));
+
+        //Type of luminaire
+        JLabel glType = new JLabel();
+        glType.setText("Type");
+        gvType = new JLabel();
+
+        //Peak power of luminaire
+        JLabel glPeakPower = new JLabel();
+        glPeakPower.setText("Peak Power");
+        gvPeakPower = new JLabel();
+
+        // Create layout of labels, inputs and values.
+        GridLayout layout = new GridLayout(0, 8, 10, 10);
+        guiFrame.getContentPane().setLayout(layout);
+        Container guiPane = guiFrame.getContentPane();
+        guiPane.add(glPower);
+        guiPane.add(gvPower);
+        guiPane.add(glDimLevel);
+        guiPane.add(gvDimLevel);
+        guiPane.add(glType);
+        guiPane.add(gvType);
+        guiPane.add(glPeakPower);
+        guiPane.add(gvPeakPower);
+
+        guiFrame.pack();
+        // Code to make the frame visible.
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                guiFrame.setVisible(true);
+            }
+        });
     }
 
     @Override
     public synchronized ReadResponse read(ServerIdentity identity, int resourceId) {
-	switch (resourceId) {
-	case RES_POWER:
-	    return ReadResponse.success(resourceId, vPower);
-	case RES_TYPE:
-	    return ReadResponse.success(resourceId, vType);
-	case RES_PEAK_POWER:
-	    return ReadResponse.success(resourceId, vPeakPower);
-	case RES_DIM_LEVEL:
-	    return ReadResponse.success(resourceId, vDimLevel);
-	default:
-	    return super.read(identity, resourceId);
-	}
+        switch (resourceId) {
+            case RES_POWER:
+                return ReadResponse.success(resourceId, vPower);
+            case RES_TYPE:
+                return ReadResponse.success(resourceId, vType);
+            case RES_PEAK_POWER:
+                return ReadResponse.success(resourceId, vPeakPower);
+            case RES_DIM_LEVEL:
+                return ReadResponse.success(resourceId, vDimLevel);
+            default:
+                return super.read(identity, resourceId);
+        }
     }
-    
+
     @Override
     public WriteResponse write(ServerIdentity identity, boolean replace, int resourceId, LwM2mResource value) {
-	switch (resourceId) {
-	case RES_POWER:
-	    // vPower = (Boolean) value.getValue();
-	    // fireResourceChange(resourceId);
-	    setPower((Boolean) value.getValue());
-	    return WriteResponse.success();
-	case RES_DIM_LEVEL:
-	    // vDimLevel = (Integer) value.getValue();
-	    // fireResourceChange(resourceId);
-	    setDimLevel((Long) value.getValue());
-	    return WriteResponse.success();
-	default:
-	    return super.write(identity, replace, resourceId,value);
-	}
+        switch (resourceId) {
+            case RES_POWER:
+                //vPower = (Boolean) value.getValue();
+                //fireResourceChange(resourceId);
+                setPower((Boolean) value.getValue());
+                return WriteResponse.success();
+            case RES_DIM_LEVEL:
+                // vDimLevel = (Integer) value.getValue();
+                // fireResourceChange(resourceId);
+                setDimLevel((Long) value.getValue());
+                return WriteResponse.success();
+            case RES_TYPE:
+                // case for luminaire type added by us
+                setType((String) value.getValue());
+                return WriteResponse.success();
+            case RES_PEAK_POWER:
+                // case for peak power added by us
+                setPeakPower((long) value.getValue());
+                System.out.println(value.getValue());
+                return WriteResponse.success();
+            default:
+                return super.write(identity, replace, resourceId, value);
+        }
     }
-    
+
     @Override
     public synchronized ExecuteResponse execute(ServerIdentity identity, int resourceId, Arguments arguments) {
-	switch (resourceId) {
-	default:
-	    return super.execute(identity, resourceId,arguments);
-	}
+        return super.execute(identity, resourceId, arguments);
     }
-    
+
     @Override
     public List<Integer> getAvailableResourceIds(ObjectModel model) {
-	return supportedResources;
+        return supportedResources;
     }
-    
+
     // Configure before registration, don't fire.
     public void configure(String lumtype, long peakpower) {
-	vType = lumtype;
-	vPeakPower = peakpower;
-	System.out.println(vType + " " + vPeakPower);
+        vType = lumtype;
+        // Set text here
+        gvType.setText(lumtype);
+        // Set text here
+        vPeakPower = peakpower;
+        gvPeakPower.setText(String.valueOf(peakpower));
+        System.out.println(vType + " " + vPeakPower);
     }
-    
+
     private synchronized void setPower(boolean value) {
-	if (vPower != value) {
-	    vPower = value;
-	    //
-	    // 2IMN15:  TODO  :  fill in
-	    //
-	    // RoomControl has change the power.
-	    // Update the UI.
-		gvPower.setText(Boolean.toString(value));
-	    fireResourceChange(RES_POWER);
-	}
+        if (vPower != value) {
+            vPower = value;
+            //
+            // 2IMN15:  TODO  :  fill in
+            //
+            // RoomControl has changed the power.
+            // Update the UI.
+            gvPower.setText(Boolean.toString(value));
+            fireResourceChange(RES_POWER);
+        }
     }
-    
+
     private synchronized void setType(String value) {
-	if (vType != value) {
-	    vType = value;
-	    fireResourceChange(RES_TYPE);
-	}
+        if (!Objects.equals(vType, value)) {
+            vType = value;
+            gvType.setText(value);
+            fireResourceChange(RES_TYPE);
+        }
     }
 
     private synchronized void setPeakPower(long value) {
-	if (vPeakPower != value) {
-	    vPeakPower = value;
-	    fireResourceChange(RES_PEAK_POWER);
-	}
+        if (vPeakPower != value) {
+            vPeakPower = value;
+            gvPeakPower.setText(Long.toString(value));
+            fireResourceChange(RES_PEAK_POWER);
+        }
     }
 
     private synchronized void setDimLevel(long value) {
-	if (vDimLevel != value) {
-	    vDimLevel = value;
-	    //
-	    // 2IMN15:  TODO  :  fill in
-	    //
-	    // RoomControl has change the dim level.
-	    // Update the UI.
-		gvDimLevel.setText(Long.toString(value));
-	    fireResourceChange(RES_DIM_LEVEL);
-	}
+        if (vDimLevel != value) {
+            vDimLevel = value;
+            //
+            // 2IMN15:  TODO  :  fill in
+            //
+            // RoomControl has changed the dim level.
+            // Update the UI.
+            gvDimLevel.setText(Long.toString(value));
+            fireResourceChange(RES_DIM_LEVEL);
+        }
     }
 
 }

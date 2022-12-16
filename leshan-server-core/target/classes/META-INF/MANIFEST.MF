@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1670861528528
+Bnd-LastModified: 1671049510395
 Build-Jdk-Spec: 19
 Bundle-Description: A LWM2M server implementation which abstracts transp
  ort layer. A transport implementation like "leshan-server-cf" is needed
